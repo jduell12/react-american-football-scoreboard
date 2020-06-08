@@ -30,36 +30,101 @@ function App() {
 
   return (
     <div className="container">
-      <section className="scoreboard">
-        <div className="topRow">
-          <div className="home">
-            <h2 className="home__name">Lions</h2>
-
-            {/* TODO STEP 3 - We need to change the hardcoded values in these divs to accept dynamic values from our state. */}
-            <div className="home__score">{homeScore}</div>
-          </div>
-          <div className="timer">00:03</div>
-          <div className="away">
-            <h2 className="away__name">Tigers</h2>
-            <div className="away__score">{awayScore}</div>
-          </div>
-        </div>
-        <BottomRow />
-      </section>
+      <ScoreBoard homeScore = {homeScore} awayScore={awayScore}/>
       <section className="buttons">
-        <div className="homeButtons">
-
-          {/* TODO STEP 4 - Now we need to attach our state setter functions to click listeners. */}
-          <button className="homeButtons__touchdown" onClick={homeTouchDown}>Home Touchdown</button>
-          <button className="homeButtons__fieldGoal" onClick={homeFieldGoal}>Home Field Goal</button>
-        </div>
-        <div className="awayButtons">
-          <button className="awayButtons__touchdown" onClick={awayTouchDown}>Away Touchdown</button>
-          <button className="awayButtons__fieldGoal" onClick={awayFieldGoal}>Away Field Goal</button>
-        </div>
-      </section>
+      <HomeButtons touchDown ={homeTouchDown} fieldGoal ={homeFieldGoal}/>
+      <AwayButtons touchDown={awayTouchDown} fieldGoal={awayFieldGoal}/>
+    </section>
     </div>
   );
+  //   return (
+  //     <div className="container">
+  //       <section className="scoreboard">
+  //         <div className="topRow">
+  //           <div className="home">
+  //             <h2 className="home__name">Lions</h2>
+  
+  //             {/* TODO STEP 3 - We need to change the hardcoded values in these divs to accept dynamic values from our state. */}
+  //             <div className="home__score">32</div>
+  //           </div>
+  //           <div className="timer">00:03</div>
+  //           <div className="away">
+  //             <h2 className="away__name">Tigers</h2>
+  //             <div className="away__score">32</div>
+  //           </div>
+  //         </div>
+  //         <BottomRow />
+  //       </section>
+  //       <section className="buttons">
+  //         <div className="homeButtons">
+  
+  //           {/* TODO STEP 4 - Now we need to attach our state setter functions to click listeners. */}
+  //           <button className="homeButtons__touchdown">Home Touchdown</button>
+  //           <button className="homeButtons__fieldGoal">Home Field Goal</button>
+  //         </div>
+  //         <div className="awayButtons">
+  //           <button className="awayButtons__touchdown">Away Touchdown</button>
+  //           <button className="awayButtons__fieldGoal">Away Field Goal</button>
+  //         </div>
+  //       </section>
+  //     </div>
+  // );
+}
+
+function ScoreBoard(props){
+  const {homeScore, awayScore} = props
+  return (
+    <section className="scoreboard">
+      <div className="topRow">
+      <Home score={homeScore}/>
+      <div className="timer">00:03</div>
+      <Away score={awayScore}/>
+      </div>
+      <BottomRow />
+    </section>
+  )
+
+}
+
+function Home(props){
+  const {score} = props
+  return(
+    <div className="home">
+      <h2 className="home__name">Lions</h2>
+      <div className="home__score">{score}</div>
+    </div>
+  )
+}
+
+function Away(props){
+  return(
+    <div className="away">
+      <h2 className="away__name">Tigers</h2>
+      <div className="away__score">{props.score}</div>
+    </div>
+  )
+}
+
+function HomeButtons(props){
+  const {touchDown, fieldGoal} = props
+
+  return(
+    <div className="homeButtons">
+      <button className="homeButtons__touchdown" onClick={touchDown}>Home Touchdown</button>
+      <button className="homeButtons__fieldGoal" onClick={fieldGoal}>Home Field Goal</button>
+    </div>
+  )
+}
+
+function AwayButtons(props){
+  const {touchDown, fieldGoal} = props
+
+  return(
+    <div className="awayButtons">
+      <button className="awayButtons__touchdown" onClick={touchDown}>Away Touchdown</button>
+      <button className="awayButtons__fieldGoal" onClick={fieldGoal}>Away Field Goal</button>
+    </div>
+  )
 }
 
 export default App;
