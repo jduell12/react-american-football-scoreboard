@@ -8,6 +8,7 @@ function App() {
 
   const [homeScore, scoreHomeGoal] = useState(0);
   const [awayScore, scoreAwayGoal] = useState(0);
+ 
 
   /* touchdown is worth 7 points (assume the following extra point is made)
  A field goal is worth 3 points */
