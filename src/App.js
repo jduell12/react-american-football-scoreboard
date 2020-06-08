@@ -1,6 +1,9 @@
 //TODO: STEP 1 - Import the useState hook.
 import React, {useState} from "react";
 import BottomRow from "./BottomRow";
+import Scoreboard from "./Scoreboard";
+import HomeButtons from "./HomeButtons";
+import AwayButtons from "./AwayButtons";
 import "./App.css";
 
 function App() {
@@ -31,11 +34,11 @@ function App() {
 
   return (
     <div className="container">
-      <ScoreBoard homeScore = {homeScore} awayScore={awayScore}/>
+      <Scoreboard homeScore = {homeScore} awayScore={awayScore}/>
       <section className="buttons">
-      <HomeButtons touchDown ={homeTouchDown} fieldGoal ={homeFieldGoal}/>
-      <AwayButtons touchDown={awayTouchDown} fieldGoal={awayFieldGoal}/>
-    </section>
+        <HomeButtons touchDown ={homeTouchDown} fieldGoal ={homeFieldGoal}/>
+        <AwayButtons touchDown={awayTouchDown} fieldGoal={awayFieldGoal}/>
+      </section>
     </div>
   );
   //   return (
@@ -70,62 +73,6 @@ function App() {
   //       </section>
   //     </div>
   // );
-}
-
-function ScoreBoard(props){
-  const {homeScore, awayScore} = props
-  return (
-    <section className="scoreboard">
-      <div className="topRow">
-      <Home score={homeScore}/>
-      <div className="timer">00:03</div>
-      <Away score={awayScore}/>
-      </div>
-      <BottomRow />
-    </section>
-  )
-
-}
-
-function Home(props){
-  const {score} = props
-  return(
-    <div className="home">
-      <h2 className="home__name">Lions</h2>
-      <div className="home__score">{score}</div>
-    </div>
-  )
-}
-
-function Away(props){
-  return(
-    <div className="away">
-      <h2 className="away__name">Tigers</h2>
-      <div className="away__score">{props.score}</div>
-    </div>
-  )
-}
-
-function HomeButtons(props){
-  const {touchDown, fieldGoal} = props
-
-  return(
-    <div className="homeButtons">
-      <button className="homeButtons__touchdown" onClick={touchDown}>Home Touchdown</button>
-      <button className="homeButtons__fieldGoal" onClick={fieldGoal}>Home Field Goal</button>
-    </div>
-  )
-}
-
-function AwayButtons(props){
-  const {touchDown, fieldGoal} = props
-
-  return(
-    <div className="awayButtons">
-      <button className="awayButtons__touchdown" onClick={touchDown}>Away Touchdown</button>
-      <button className="awayButtons__fieldGoal" onClick={fieldGoal}>Away Field Goal</button>
-    </div>
-  )
 }
 
 export default App;
